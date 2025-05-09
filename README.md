@@ -1,4 +1,4 @@
-#Aster
+# Aster
 # Sistema de gestión de asistencia y guardias para instituciones educativas, desarrollado en JavaFX.
 
 Aplicación de escritorio diseñada para centros educativos que permite gestionar la asistencia del profesorado y las guardias ante ausencias. Esta herramienta busca facilitar el cumplimiento de la jornada laboral y la cobertura de clases por parte del profesorado de guardia.
