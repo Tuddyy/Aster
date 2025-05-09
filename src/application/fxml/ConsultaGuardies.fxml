@@ -9,12 +9,12 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500" prefWidth="800" style="-fx-background-color: #f9f9f9;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConsultaGuardiesController">
-    <Label layoutX="30" layoutY="20" text="Consultar Absències i Assignar Guàrdies">
+    <Label layoutX="30" layoutY="20" text="Consultar Ausencias y Asignar Guardias">
         <font>
             <Font name="System Bold" size="20" />
         </font>
     </Label>
-    <Label layoutX="30" layoutY="70" text="Selecciona Data:" />
+    <Label layoutX="30" layoutY="70" text="Seleccionar Fecha:" />
     <DatePicker fx:id="datePicker" layoutX="150" layoutY="65" />
     
     <!-- Botón de Buscar -->
@@ -25,12 +25,12 @@
 
     <TableView fx:id="tableView" layoutX="30" layoutY="120" prefHeight="340" prefWidth="740">
         <columns>
-            <TableColumn fx:id="colDocent" prefWidth="150" text="Profe Absent" />
-            <TableColumn fx:id="colGrup" prefWidth="100" text="Grup" />
-            <TableColumn fx:id="colMateria" prefWidth="150" text="Matèria" />
+            <TableColumn fx:id="colDocent" prefWidth="150" text="Profe Ausente" />
+            <TableColumn fx:id="colGrup" prefWidth="100" text="Grupo" />
+            <TableColumn fx:id="colMateria" prefWidth="150" text="Materia" />
             <TableColumn fx:id="colAula" prefWidth="80" text="Aula" />
             <TableColumn fx:id="colHora" prefWidth="120" text="Hora" />
-            <TableColumn fx:id="colAccio" prefWidth="139.0" text="Assignar" />
+            <TableColumn fx:id="colAccio" prefWidth="139.0" text="Asignar" />
         </columns>
     </TableView>
 </AnchorPane>
