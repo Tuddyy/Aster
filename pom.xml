@@ -7,12 +7,16 @@
   <packaging>jar</packaging>
 
   <name>Aster</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/Tuddyy/Aster</url>
   
   <contributors>
   	<contributor>
-  		<name>Mihail Roberto Tudor</name>
-  		<email>tudoroberto400@gmail.com</email>
+  	   <name>Mihail Roberto Tudor</name>
+  	   <email>tudoroberto400@gmail.com</email>
+  	   <roles>
+  	     <role>Developer</role>
+  	     <role>Maintainer</role>
+  	   </roles>
   	</contributor>
   </contributors>
 
