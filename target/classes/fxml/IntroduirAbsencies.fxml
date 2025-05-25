@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.app.controller.Aster.IntroduirAbsenciesController" prefWidth="500" prefHeight="500" style="-fx-background-color: #fdfdfd;">
+    <Label layoutX="30" layoutY="30" text="Seleccionar Docente:"/>
+    <ComboBox fx:id="comboDocents" layoutX="180" layoutY="25" prefWidth="270"/>
+    <Label layoutX="30" layoutY="80" text="Fecha de ausencia:"/>
+    <DatePicker fx:id="datePicker" layoutX="180" layoutY="75"/>
+    <Label layoutX="30" layoutY="130" text="Motivo:"/>
+    <TextField fx:id="motiuField" layoutX="180" layoutY="125" prefWidth="270"/>
+    <Label layoutX="30" layoutY="180" text="Seleccionar horas:"/>
+    <ListView fx:id="listViewHores" layoutX="180" layoutY="175" prefWidth="270" prefHeight="180"/>
+    
+    <!-- HBox para los botones de Guardar y Limpiar -->
+    <HBox spacing="10" layoutX="180" layoutY="380" alignment="CENTER">
+        <Button layoutX="0" text="Guardar" onAction="#guardarAbsencia"/>
+        <Button layoutX="0" text="Limpiar" onAction="#limpiarCampos"/>
+    </HBox>
+</AnchorPane>

@@ -1,0 +1,366 @@
+/* Main application styles */ 
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-smoothing-type: gray;
+    -fx-background-color: white;
+}
+
+/* Header styles */
+#headerBox {
+    -fx-background-color: #6d6da0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 0, 2, 0, 2);
+    -fx-padding: 10px 15px;
+}
+
+#bienvenidaText {
+    -fx-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Tab styles */
+.tab-pane {
+    -fx-background-color: #f4f4f4; /* Changed to light gray for all tabs */
+    -fx-tab-min-width: 120px;
+    -fx-tab-max-width: 120px;
+    -fx-background-radius: 0 0 5px 5px;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 0;
+}
+
+.tab {
+    -fx-background-color: #f4f4f4;
+    -fx-border-width: 0;
+    -fx-padding: 12px 25px;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+    -fx-border-color: #8d8dc6;
+    -fx-border-width: 0 0 3px 0;
+}
+
+.tab-label {
+    -fx-text-fill: #6d6da0;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #6d6da0;
+}
+
+/* Button styles - Applied to ALL buttons */
+.button {
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 3, 0.5, 0, 1);
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #807fba;
+}
+
+.button:pressed {
+    -fx-background-color: #8d8dc6;
+}
+
+/* Specific button styles */
+#iniciarBtn, #finalizarBtn {
+    -fx-min-width: 150px;
+}
+
+#cerrarSesion {
+    -fx-background-color: #e57373;
+}
+
+#cerrarSesion:hover {
+    -fx-background-color: #ef9a9a;
+}
+
+/* Form controls */
+.text-field, .password-field, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-prompt-text-fill: #a0a0a0;
+    -fx-background-radius: 0;
+}
+
+.text-field:focused, .password-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #6d6da0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.combo-box .arrow, .date-picker .arrow {
+    -fx-background-color: #6d6da0;
+}
+
+/* Estilos para las flechas de navegación del DatePicker */
+.date-picker-popup .month-year-pane {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .spinner .button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 2px 5px; 
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.date-picker-popup .spinner .button:hover {
+    -fx-background-color: #f0f0f0; 
+}
+
+.date-picker-popup .spinner .button .arrow {
+    -fx-background-color: #6d6da0; 
+    -fx-padding: 2px; 
+}
+
+/* Eliminar el borde de foco */
+.date-picker-popup .spinner .button:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Table styles */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.table-view .column-header, .table-view .column-header-background {
+    -fx-background-color: #6d6da0;
+    -fx-background-radius: 5px 5px 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-border-color: #f0f0f0;
+    -fx-text-fill: #333333;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #8d8dc6;
+}
+
+/* ListView styles */
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #8d8dc6;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #e0e0ff;
+}
+
+/* Section titles */
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6d6da0;
+    -fx-padding: 0 0 10px 0;
+}
+
+#asistenciaTitle, #guardiesTitle, #absenciesTitle, #informeFaltasTitle, #guardiesRealitzadesTitle {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6d6da0;
+    -fx-padding: 0 0 10px 0;
+}
+
+/* Primary buttons - for Informes and Guardies Realitzades */
+.btn-primary {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 20px;
+    -fx-font-weight: bold;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #807fba;
+}
+
+/* Login specific styles */
+#LoginButton {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 20px;
+    -fx-font-weight: bold;
+}
+
+#LoginButton:hover {
+    -fx-background-color: #807fba;
+}
+
+/* Remove focus highlights */
+* {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* Hover effects */
+.button:hover, .tab:hover, .combo-box:hover, .date-picker:hover, .list-cell:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 1);
+}
+
+/* Container styles for consistent backgrounds */
+.anchor-pane, .vbox, .hbox {
+    -fx-background-color: #f4f4f4; /* Changed to light gray */
+    -fx-padding: 15px;
+}
+
+/* Specific tab content backgrounds - all set to light gray */
+#asistenciaModule, #guardiesModule, #absenciesModule, #informeFaltasModule, #guardiesRealitzadesModule {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Special styles for search buttons in Asistencia and Guardies */
+#btnBuscar, #buscarGuardies {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px 15px;
+}
+
+/* Styles for buttons in Absencies */
+#guardarAbsencia {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 20px;
+}
+
+/* Styles for assign buttons in Guardies */
+#colAccio .button {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 12px;
+}
+
+/* Style for the generate report button in Informes */
+#generarInforme {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 20px;
+    -fx-font-weight: bold;
+    -fx-translate-x: -300; 
+}
+
+/* Estilo para los campos de texto */
+.text-field, .password-field {
+    -fx-pref-width: 200px;
+    -fx-min-width: 150px;
+    -fx-prompt-text-fill: #a0a0a0;
+}
+
+/* Estilo para el botón de login */
+#LoginButton {
+    -fx-background-color: #2a2a29;
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 20px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 1);
+}
+
+#LoginButton:hover {
+    -fx-background-color: #3d3d3d;
+}
+
+#LoginButton:pressed {
+    -fx-background-color: #505050;
+}
+
+
+/* Estilo para el texto del título */
+.text {
+    -fx-font-smoothing-type: lcd;
+}
+
+/* Alert styles - based on the image */
+.alert {
+    -fx-background-color: white;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 0, 2, 0, 2);
+}
+
+/* Header styles for different alert types */
+.alert.success .header-panel {
+    -fx-background-color: #4CAF50;  /* Green */
+}
+
+.alert.error .header-panel {
+    -fx-background-color: #F44336; /* Red */
+}
+
+.alert.info .header-panel {
+    -fx-background-color: #2196F3; /* Blue */
+}
+
+.alert.warning .header-panel {
+    -fx-background-color: #FF9800; /* Orange */
+}
+
+/* Text styles */
+.alert .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.alert .content.label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+/* Button styles */
+.alert .button {
+    -fx-background-color: #6d6da0;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 16px;
+    -fx-font-weight: bold;
+}
+
+.alert .button:hover {
+    -fx-background-color: #807fba;
+}
+
+.alert .button:pressed {
+    -fx-background-color: #8d8dc6;
+}

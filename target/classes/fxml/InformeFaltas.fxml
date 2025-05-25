@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" spacing="15" stylesheets="@../css/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx" fx:controller="com.app.controller.Aster.InformeFaltasController">
+    <padding>
+        <Insets bottom="20" left="30" right="30" top="20"/>
+    </padding>
+    <Label styleClass="section-title" text="Generar Informe de Faltas"/>
+    <HBox spacing="10">
+        <VBox spacing="5">
+            <Label text="Periodo:"/>
+            <ComboBox fx:id="periodoCombo" prefWidth="150"/>
+        </VBox>
+        <VBox spacing="5">
+            <Label text="Docente:"/>
+            <ComboBox fx:id="docenteCombo" prefWidth="200"/>
+        </VBox>
+    </HBox>
+    <Button fx:id="generarBtn" onAction="#generarInforme" prefHeight="31.0" prefWidth="178.0" styleClass="btn-primary" text="Generar Informe"/>
+    
+    <!-- Cambiamos el ListView por un TextArea para mostrar el informe -->
+    <TextArea fx:id="resultadosTextArea" prefHeight="300" wrapText="true" editable="false"/>
+</VBox>

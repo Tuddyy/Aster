@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" spacing="15" stylesheets="@../css/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/" fx:controller="com.app.controller.Aster.ConsultaGuardiesRealitzadesController">
+    <padding><Insets bottom="20" left="30" right="30" top="20" /></padding>
+    <Label styleClass="section-title" text="Consulta de Guàrdies Realitzades" />
+    
+    <!-- Formulario para seleccionar fecha y hora -->
+    <HBox alignment="BASELINE_LEFT" spacing="10">
+    <!-- Campos de fecha y hora -->
+    <VBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Fecha:" />
+        <DatePicker fx:id="fechaPicker" />
+    </VBox>
+    <VBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Hora:" />
+        <ComboBox fx:id="horaCombo" prefWidth="100" />
+    </VBox>
+    
+    <!-- Botones alineados con los campos -->
+    <HBox alignment="BASELINE_LEFT" spacing="10">
+        <Button fx:id="buscarBtn" onAction="#buscarGuardies" scaleY="0.9" styleClass="btn-primary" text="Buscar" translateY="20.0" />
+        <Button fx:id="limpiarBtn" onAction="#limpiarCampos" scaleY="0.9" styleClass="btn-secondary" text="Limpiar" translateY="20.0" />
+    </HBox>
+</HBox>
+
+    <!-- Lista de guardias realizadas -->
+    <ListView fx:id="tablaGuardies" prefHeight="300" VBox.vgrow="ALWAYS" />
+</VBox>
