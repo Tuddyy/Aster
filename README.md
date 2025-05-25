@@ -1,3 +1,5 @@
+![Image](https://github.com/user-attachments/assets/a3d97502-9ed7-4b89-8d13-b697aeba801c)
+
 # ASTER
 **Gestión moderna de asistencia y guardias para centros educativos**
 
