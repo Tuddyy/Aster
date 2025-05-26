@@ -36,10 +36,10 @@
         <TabPane fx:id="tabPane" style="-fx-background-insets: 0; -fx-padding: 5 5 0 5;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS"> 
             <tabs> 
                 <Tab fx:id="tabAsistencia" text="Asistencia"/> 
-                <Tab fx:id="tabAbsencies" text="Ausencias"/> 
-                <Tab fx:id="tabGuardies" text="Guardias"/> 
+                <Tab fx:id="tabAusencias" text="Ausencias"/> 
+                <Tab fx:id="tabGuardias" text="Guardias"/> 
                 <Tab fx:id="tabInformeFaltas" text="Informes"/> 
-                <Tab fx:id="tabConsultaGuardiesRealitzades" text="Guardias Realizadas"/> 
+                <Tab fx:id="tabConsultaGuardiasRealizadas" text="Guardias Realizadas"/> 
             </tabs> 
         </TabPane> 
     </center> 

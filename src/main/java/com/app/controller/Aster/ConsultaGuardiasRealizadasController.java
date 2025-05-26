@@ -7,21 +7,20 @@ import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
-
 import com.app.alertas.Aster.Alertas;
 import com.app.dbconnector.Aster.DatabaseConnector;
 
-public class ConsultaGuardiesRealitzadesController {
+public class ConsultaGuardiasRealizadasController {
 
     @FXML private DatePicker fechaPicker;
     @FXML private ComboBox<String> horaCombo;
     @FXML private Button buscarBtn;
-    @FXML private ListView<String> tablaGuardies;
+    @FXML private ListView<String> tablaGuardias;
     
-    private String idDocent;
+    private String idDocente;
     
     public void setUsuario(String idDocent) {
-        this.idDocent = idDocent;
+        this.idDocente = idDocent;
     }
 
     private Map<String, String> horaTextoToHoraDesdeMap = new HashMap<>();
@@ -53,7 +52,7 @@ public class ConsultaGuardiesRealitzadesController {
     }
 
     @FXML
-    void buscarGuardies() {
+    void buscarGuardias() {
         LocalDate fecha = fechaPicker.getValue();
         String seleccionado = horaCombo.getValue();
 
@@ -100,7 +99,7 @@ public class ConsultaGuardiesRealitzadesController {
                 Alertas.showInfoAlert("No hay guardias realizadas para esa fecha y hora.");
             }
 
-            tablaGuardies.setItems(guardias);
+            tablaGuardias.setItems(guardias);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,12 +109,13 @@ public class ConsultaGuardiesRealitzadesController {
     
     @FXML
     void limpiarCampos() {
-        // Limpiar los campos de entrada
+    	
+    	/* Limpiar los campos de entrada */
         fechaPicker.setValue(null);
         horaCombo.getSelectionModel().clearSelection();
 
-        // Limpiar la lista de resultados
-        tablaGuardies.setItems(FXCollections.observableArrayList());
+        /* Limpiar la lista de resultados */
+        tablaGuardias.setItems(FXCollections.observableArrayList());
     }
 
 }

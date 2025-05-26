@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
 import com.app.alertas.Aster.Alertas;
 import com.app.dbconnector.Aster.DatabaseConnector;
 
@@ -95,31 +94,44 @@ public class InformeFaltasController {
         }
         return list;
     }
-
-    private String buildInforme(List<Ausencia> list, String docenteSel) {
+    
+    /**
+     * Informe de ausencias a partir de una lista de objetos Ausencia y el docente seleccionado.
+     *
+     * @param list Lista de ausencias registradas
+     * @param docenteSel Nombre del docente seleccionado (puede ser "Todos los docentes")
+     * @return Un String con el informe formateado
+     */
+     private String buildInforme(List<Ausencia> list, String docenteSel) {
+    	 
+    	/* Formateadores de fecha: uno para día/mes/año y otro para nombre del mes + año */
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter mf = DateTimeFormatter.ofPattern("MMMM yyyy", new Locale("es"));
         StringBuilder out = new StringBuilder("INFORME DE AUSENCIAS\n===============================\n");
+        
+        /* Si se seleccionó un docente específico, se añade su nombre al informe */
         if (!docenteSel.equals("Todos los docentes")) {
             out.append("Docente: ").append(docenteSel.split(" - ")[1]).append("\n");
         }
+        
         if (list.isEmpty()) {
             out.append("\nNo se encontraron ausencias registradas.\n");
             return out.toString();
         }
-     // Cálculo de rango y totales
+        
+        /* Cálculo del primer y último día de ausencias */
         LocalDate primero = list.get(0).fecha, ultimo = primero;
         for (Ausencia a : list) {
             if (a.fecha.isBefore(primero)) primero = a.fecha;
             if (a.fecha.isAfter(ultimo)) ultimo = a.fecha;
         }
 
-        // Aquí ya no sumamos 1 al total de días.
+        /* Cálculo del número total de días entre la primera y última ausencia */
         long diasTot = ChronoUnit.DAYS.between(primero, ultimo);  // Sin el +1
         long semanas = diasTot / 7;  // Número de semanas completas
         long dias = diasTot % 7;    // Días restantes
 
-        // Construcción del periodo calculado
+        /* Agrega el resumen del periodo al informe */
         out.append("\nPeriodo de ausencias: ")
            .append(semanas > 0 ? semanas + (semanas == 1 ? " semana " : " semanas ") : "")
            .append(dias > 0 ? dias + (dias == 1 ? " día" : " días") : "")
@@ -127,31 +139,42 @@ public class InformeFaltasController {
            .append(" - Hasta: ").append(ultimo.format(df))
            .append("\nTotal días con ausencias: ").append(list.size()).append("\n\n");
         
-        // Detalle por mes/fecha/profesor
+        /* Detalle de ausencias por mes, fecha y profesor */
         String curMes="", curFecha="", curProf="";
         out.append("DETALLE DE AUSENCIAS:\n");
+        
         for (Ausencia a : list) {
-            String mes = a.fecha.format(mf).toUpperCase();
-            String fecha = a.fecha.format(df);
+            String mes = a.fecha.format(mf).toUpperCase(); /* Ej: "MAYO 2025" */
+            String fecha = a.fecha.format(df);             /* Ej: "25/05/2025" */
+            
+            /* Si cambia el mes, se imprime un nuevo encabezado mensual */
             if (!mes.equals(curMes)) {
                 out.append("\n").append(mes).append("\n----------\n");
                 curMes = mes; curFecha=""; curProf="";
             }
+            
+            /* Si cambia la fecha, se imprime encabezado con el día y fecha */
             if (!fecha.equals(curFecha)) {
                 out.append("\n").append(convertirDia(a.dia)).append(", ").append(fecha).append("\n");
                 curFecha=fecha; curProf="";
             }
+            
+            /* Si cambia el profesor, se imprime su nombre */
             if (!a.nom.equals(curProf)) {
                 out.append("  ").append(a.nom).append(":\n");
                 curProf=a.nom;
             }
+            
+            /* Detalle de la ausencia: hora, grupo, contenido y motivo */
             out.append("    - ").append(a.horaDesde).append(" a ").append(a.horaFins)
                .append(": ").append(a.contenido).append(" (").append(a.grup).append(")\n")
                .append("      Motivo: ").append(a.motiu).append("\n");
         }
+        
         return out.toString();
     }
 
+    /* Guardar el informe en el archivo .txt */
     private void guardarInformeEnArchivo(String contenido) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Guardar informe de ausencias");
@@ -177,13 +200,10 @@ public class InformeFaltasController {
         };
     }
 
-    private static class Ausencia {
-        LocalDate fecha; String idDocent, nom, dia, horaDesde, horaFins, contenido, grup, motiu;
-        Ausencia(LocalDate f, String id, String n, String d,
-                String h1, String h2, String c, String g, String m) {
-            this.fecha=f; this.idDocent=id; this.nom=n; this.dia=d;
-            this.horaDesde=h1; this.horaFins=h2; this.contenido=c;
-            this.grup=g; this.motiu=m;
+    private static class Ausencia { LocalDate fecha; String idDocent, nom, dia, horaDesde, horaFins, contenido, grup, motiu;             /* Atributos de la ausencia */
+                         Ausencia(LocalDate f, String id, String n, String d,String h1, String h2, String c, String g, String m) {       /* Constructor de ausencia */
+                         this.fecha=f; this.idDocent=id; this.nom=n; this.dia=d; this.horaDesde=h1; this.horaFins=h2; this.contenido=c;
+                         this.grup=g; this.motiu=m;
         }
     }
 }

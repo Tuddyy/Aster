@@ -10,14 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tab;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import com.app.alertas.Aster.Alertas;
 import com.app.dbconnector.Aster.DatabaseConnector;
 
@@ -26,16 +24,16 @@ public class AplicacionController {
     @FXML private Text bienvenidaText;
     @FXML private TabPane tabPane;
     @FXML private Tab tabAsistencia;
-    @FXML private Tab tabAbsencies;
-    @FXML private Tab tabGuardies;
+    @FXML private Tab tabAusencias;
+    @FXML private Tab tabGuardias;
     @FXML private Tab tabInformeFaltas;
-    @FXML private Tab tabConsultaGuardiesRealitzades;
+    @FXML private Tab tabConsultaGuardiasRealizadas;
     
-    private String idDocent;
+    private String idDocente;
     private String rolUsuario;
     
     public void initialize() {
-        // Configurar listener para cargar pestañas cuando se seleccionan
+        /* Listener para cargar las pestañas cuando se seleccionan */
         tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             if (newTab != null && newTab.getContent() == null) {
                 cargarPestana(newTab);
@@ -51,8 +49,15 @@ public class AplicacionController {
         });
     }
 
+    /**
+    * Establece el usuario actual que ha iniciado sesión, configurando el rol,
+    * el mensaje de bienvenida y las pestañas visibles según su permiso.
+    *
+    * @param idDocent ID del docente que ha iniciado sesión
+    * @param rol Rol del usuario (por ejemplo, "Administrador" o "Usuario")
+    */
     public void setUsuario(String idDocent, String rol) {
-        this.idDocent = idDocent;
+        this.idDocente = idDocent;
         this.rolUsuario = rol;
         
         try (Connection conn = DatabaseConnector.connect();
@@ -66,10 +71,7 @@ public class AplicacionController {
                 String dni = rs.getString("usuario");
                 bienvenidaText.setText("Bienvenido, " + dni + ("admin".equalsIgnoreCase(rol) ? " (Administrador)" : ""));
                 
-                // Configurar pestañas según permisos
                 configurarPestanasPorRol(rol);
-                
-                // Cargar la pestaña inicial
                 cargarPestanaInicial();
             }
         } catch (Exception e) {
@@ -80,11 +82,13 @@ public class AplicacionController {
 
     private void configurarPestanasPorRol(String rol) {
         if (!"admin".equalsIgnoreCase(rol)) {
-            // Para usuarios no administradores
-            tabPane.getTabs().removeAll(tabAsistencia, tabAbsencies, tabInformeFaltas);
-            tabPane.getSelectionModel().select(tabGuardies);
+        	
+            /* Para usuarios no administradores */
+            tabPane.getTabs().removeAll(tabAsistencia, tabAusencias, tabInformeFaltas);
+            tabPane.getSelectionModel().select(tabGuardias);
         } else {
-            // Para administradores
+        	
+            /* Para administradores */
             tabPane.getSelectionModel().select(tabAsistencia);
         }
     }
@@ -100,14 +104,14 @@ public class AplicacionController {
         try {
             if (pestana == tabAsistencia) {
                 cargarControladorAsistencia();
-            } else if (pestana == tabAbsencies) {
-                cargarControladorAbsencies();
-            } else if (pestana == tabGuardies) {
-                cargarControladorGuardies();
+            } else if (pestana == tabAusencias) {
+                cargarControladorAusencias();
+            } else if (pestana == tabGuardias) {
+                cargarControladorGuardias();
             } else if (pestana == tabInformeFaltas) {
                 cargarControladorInformeFaltas();
-            } else if (pestana == tabConsultaGuardiesRealitzades) {
-                cargarControladorGuardiesRealitzades();
+            } else if (pestana == tabConsultaGuardiasRealizadas) {
+                cargarControladorGuardiasRealizadas();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,25 +120,25 @@ public class AplicacionController {
     }
 
     private void cargarControladorAsistencia() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConsultaAssistencia.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConsultaAsistencia.fxml"));
         Parent content = loader.load();
-        ConsultaAssistenciaController controller = loader.getController();
-        controller.setRolUsuari(rolUsuario);
+        ConsultaAsistenciaController controller = loader.getController();
+        controller.setRolUsuario(rolUsuario);
         tabAsistencia.setContent(content);
     }
 
-    private void cargarControladorAbsencies() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/IntroduirAbsencies.fxml"));
+    private void cargarControladorAusencias() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/IntroducirAusencias.fxml"));
         Parent content = loader.load();
-        tabAbsencies.setContent(content);
+        tabAusencias.setContent(content);
     }
 
-    private void cargarControladorGuardies() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConsultaGuardies.fxml"));
+    private void cargarControladorGuardias() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConsultaGuardias.fxml"));
         Parent content = loader.load();
-        ConsultaGuardiesController ctrl = loader.getController();
-        ctrl.setUsuario(idDocent); 
-        tabGuardies.setContent(content);
+        ConsultaGuardiasController ctrl = loader.getController();
+        ctrl.setUsuario(idDocente); 
+        tabGuardias.setContent(content);
     }
 
     private void cargarControladorInformeFaltas() throws Exception {
@@ -143,12 +147,12 @@ public class AplicacionController {
         tabInformeFaltas.setContent(content);
     }
 
-    private void cargarControladorGuardiesRealitzades() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConsultaGuardiesRealitzades.fxml"));
+    private void cargarControladorGuardiasRealizadas() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConsultaGuardiasRealizadas.fxml"));
         Parent content = loader.load();
-        ConsultaGuardiesRealitzadesController ctrl = loader.getController();
-        ctrl.setUsuario(idDocent);
-        tabConsultaGuardiesRealitzades.setContent(content);
+        ConsultaGuardiasRealizadasController ctrl = loader.getController();
+        ctrl.setUsuario(idDocente);
+        tabConsultaGuardiasRealizadas.setContent(content);
     }
 
     @FXML
@@ -156,7 +160,7 @@ public class AplicacionController {
         try (Connection conn = DatabaseConnector.connect()) {
             String sql = "INSERT INTO registro_jornada (id_docent, fecha, hora_entrada) VALUES (?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, idDocent);
+            stmt.setString(1, idDocente);
             stmt.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
             stmt.setTimestamp(3, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.executeUpdate();
@@ -175,7 +179,7 @@ public class AplicacionController {
             String sql = "UPDATE registro_jornada SET hora_salida = ? WHERE id_docent = ? AND fecha = ? AND hora_salida IS NULL";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setTimestamp(1, java.sql.Timestamp.valueOf(LocalDateTime.now()));
-            stmt.setString(2, idDocent);
+            stmt.setString(2, idDocente);
             stmt.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
             stmt.executeUpdate();
 
@@ -210,7 +214,7 @@ public class AplicacionController {
     private void registrarEnLog(String tipo) {
         try (PrintWriter out = new PrintWriter(new FileWriter("registro_log.txt", true))) {
             String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            out.println(tipo + " | Usuario: " + idDocent + " | Fecha y hora: " + ahora);
+            out.println(tipo + " | Usuario: " + idDocente + " | Fecha y hora: " + ahora);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -6,40 +6,38 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
-
 import java.sql.*;
 import java.time.LocalDate;
-
 import com.app.alertas.Aster.Alertas;
 import com.app.dbconnector.Aster.DatabaseConnector;
 import com.app.model.Aster.Guardia;
 
-public class ConsultaGuardiesController {
+public class ConsultaGuardiasController {
 
     @FXML private DatePicker datePicker;
     @FXML private TableView<Guardia> tableView;
-    @FXML private TableColumn<Guardia, String> colDocent;
-    @FXML private TableColumn<Guardia, String> colGrup;
+    @FXML private TableColumn<Guardia, String> colDocente;
+    @FXML private TableColumn<Guardia, String> colGrupo;
     @FXML private TableColumn<Guardia, String> colMateria;
     @FXML private TableColumn<Guardia, String> colAula;
     @FXML private TableColumn<Guardia, String> colHora;
-    @FXML private TableColumn<Guardia, Void> colAccio;
+    @FXML private TableColumn<Guardia, Void> colAccion;
 
-    private String idDocentActual;
+    private String idDocenteActual;
 
     public void setUsuario(String idDocent) {
-        this.idDocentActual = idDocent;
+        this.idDocenteActual = idDocent;
     }
 
     @FXML
-    void buscarGuardies() {
-        LocalDate dataSeleccionada = datePicker.getValue();
-        if (dataSeleccionada == null) {
-            Alertas.showWarningAlert("Selecciona una data per continuar.");
+    void buscarGuardias() {
+        LocalDate fechaSeleccionada = datePicker.getValue();
+        if (fechaSeleccionada == null) {
+            Alertas.showWarningAlert("Selecciona una fecha para continuar.");
             return;
         }
 
-        ObservableList<Guardia> guardies = FXCollections.observableArrayList();
+        ObservableList<Guardia> guardias = FXCollections.observableArrayList();
 
         try (Connection conn = DatabaseConnector.connect()) {
             String sql = """
@@ -63,8 +61,8 @@ public class ConsultaGuardiesController {
             """;
 
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setDate(1, Date.valueOf(dataSeleccionada));
-            stmt.setDate(2, Date.valueOf(dataSeleccionada));
+            stmt.setDate(1, Date.valueOf(fechaSeleccionada));
+            stmt.setDate(2, Date.valueOf(fechaSeleccionada));
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -77,31 +75,31 @@ public class ConsultaGuardiesController {
                 String idDocentAbsent = rs.getString("id_docent");
                 int idAbsent = rs.getInt("id_absent");
 
-                guardies.add(new Guardia(idHorari, grup, materia, aula, hora, profeAbsent, idDocentAbsent, idAbsent));
+                guardias.add(new Guardia(idHorari, grup, materia, aula, hora, profeAbsent, idDocentAbsent, idAbsent));
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Alertas.showErrorAlert("Error al carregar les guàrdies.");
+            Alertas.showErrorAlert("Error al cargar las guardias.");
         }
 
-        tableView.setItems(guardies);
+        tableView.setItems(guardias);
     }
 
     @FXML
     public void initialize() {
-        colDocent.setCellValueFactory(new PropertyValueFactory<>("docentAbsent"));
-        colGrup.setCellValueFactory(new PropertyValueFactory<>("grup"));
+        colDocente.setCellValueFactory(new PropertyValueFactory<>("docentAbsent"));
+        colGrupo.setCellValueFactory(new PropertyValueFactory<>("grup"));
         colMateria.setCellValueFactory(new PropertyValueFactory<>("materia"));
         colAula.setCellValueFactory(new PropertyValueFactory<>("aula"));
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
 
-        colAccio.setCellFactory(getBotonsAccio());
+        colAccion.setCellFactory(getBotonesAccion());
     }
 
     @SuppressWarnings("unused")
-    private Callback<TableColumn<Guardia, Void>, TableCell<Guardia, Void>> getBotonsAccio() {
+    private Callback<TableColumn<Guardia, Void>, TableCell<Guardia, Void>> getBotonesAccion() {
         return param -> new TableCell<>() {
-            private final Button btn = new Button("Fer Guàrdia");
+            private final Button btn = new Button("Hacer Guardia");
 
             {
                 btn.setOnAction(event -> {
@@ -127,11 +125,11 @@ public class ConsultaGuardiesController {
         try (Connection conn = DatabaseConnector.connect()) {
             String obtenerNom = "SELECT nom FROM docent WHERE id_docent = ?";
             PreparedStatement stmtNom = conn.prepareStatement(obtenerNom);
-            stmtNom.setString(1, idDocentActual);
+            stmtNom.setString(1, idDocenteActual);
             ResultSet rsNom = stmtNom.executeQuery();
-            String nomDocentGuardia = "";
+            String nomDocenteGuardia = "";
             if (rsNom.next()) {
-                nomDocentGuardia = rsNom.getString("nom");
+                nomDocenteGuardia = rsNom.getString("nom");
             }
 
             String sql = """
@@ -142,8 +140,8 @@ public class ConsultaGuardiesController {
             """;
             PreparedStatement stmt = conn.prepareStatement(sql);
             int idx = 1;
-            stmt.setString(idx++, idDocentActual);
-            stmt.setString(idx++, nomDocentGuardia);
+            stmt.setString(idx++, idDocenteActual);
+            stmt.setString(idx++, nomDocenteGuardia);
             stmt.setInt(idx++, g.getIdHorari());
             stmt.setInt(idx++, g.getIdAbsent());
             stmt.setDate(idx++, Date.valueOf(datePicker.getValue()));
@@ -156,7 +154,7 @@ public class ConsultaGuardiesController {
             stmt.executeUpdate();
 
             Alertas.showSuccessAlert("Guardia registrada correctament.");
-            buscarGuardies();
+            buscarGuardias();
         } catch (Exception e) {
             e.printStackTrace();
             Alertas.showErrorAlert("Error al registrar la guàrdia.");
@@ -165,8 +163,8 @@ public class ConsultaGuardiesController {
     
     @FXML
     private void limpiar() {
-        datePicker.setValue(null);  // Limpia el DatePicker
-        tableView.getItems().clear();  // Limpia los resultados de la tabla
+        datePicker.setValue(null);     /* Limpia el DatePicker */
+        tableView.getItems().clear();  /* Limpia los resultados de la tabla */
     }
 
 }

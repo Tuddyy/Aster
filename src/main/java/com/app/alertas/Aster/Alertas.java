@@ -30,7 +30,6 @@ public class Alertas {
         alert.setHeaderText(title);
         alert.setContentText(message);
         
-        
         // Estilos CSS
         alert.getDialogPane().getStylesheets().add(
             Alertas.class.getResource("/css/application.css").toExternalForm()

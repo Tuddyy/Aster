@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import com.app.alertas.Aster.Alertas;
 import com.app.dbconnector.Aster.DatabaseConnector;
 
-public class IntroduirAbsenciesController {
+public class IntroducirAusenciasController {
 
     @FXML private ComboBox<String> comboDocents;
     @FXML private DatePicker datePicker;
@@ -90,7 +90,7 @@ public class IntroduirAbsenciesController {
         horesList.clear();
         horesIds.clear();
 
-        // ⚠️ Limpiar selección personalizada al recargar
+        // ⚠ Limpiar selección personalizada al recargar
         @SuppressWarnings("unchecked")
         ObservableList<Integer> selectedIndices = (ObservableList<Integer>) listViewHores.getProperties().get("customSelectedIndices");
         if (selectedIndices != null) {

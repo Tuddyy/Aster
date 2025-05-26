@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="15" stylesheets="@../css/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/" fx:controller="com.app.controller.Aster.ConsultaGuardiesRealitzadesController">
+<VBox alignment="TOP_LEFT" spacing="15" stylesheets="@../css/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/" fx:controller="com.app.controller.Aster.ConsultaGuardiasRealizadasController">
     <padding><Insets bottom="20" left="30" right="30" top="20" /></padding>
     <Label styleClass="section-title" text="Consulta de Guàrdies Realitzades" />
     
@@ -27,11 +27,11 @@
     
     <!-- Botones alineados con los campos -->
     <HBox alignment="BASELINE_LEFT" spacing="10">
-        <Button fx:id="buscarBtn" onAction="#buscarGuardies" scaleY="0.9" styleClass="btn-primary" text="Buscar" translateY="20.0" />
+        <Button fx:id="buscarBtn" onAction="#buscarGuardias" scaleY="0.9" styleClass="btn-primary" text="Buscar" translateY="20.0" />
         <Button fx:id="limpiarBtn" onAction="#limpiarCampos" scaleY="0.9" styleClass="btn-secondary" text="Limpiar" translateY="20.0" />
     </HBox>
 </HBox>
 
     <!-- Lista de guardias realizadas -->
-    <ListView fx:id="tablaGuardies" prefHeight="300" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="tablaGuardias" prefHeight="300" VBox.vgrow="ALWAYS" />
 </VBox>

@@ -28,7 +28,8 @@ public class LoginController {
     
     @FXML
     public void initialize() {
-        // Cargar todas las imágenes programáticamente
+    	
+        /* Carga todas las imágenes */
         logoImage.setImage(loadImage("/imagenes/Logo.png"));
         usuarioImage.setImage(loadImage("/imagenes/usuario.png"));
         passwordImage.setImage(loadImage("/imagenes/contraseña.png"));

@@ -9,67 +9,66 @@ import javafx.scene.control.*;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class ConsultaAssistenciaController {
+public class ConsultaAsistenciaController {
 
-    @FXML private ComboBox<String> comboDocents;
+    @FXML private ComboBox<String> comboDocentes;
     @FXML private DatePicker datePicker;
     @FXML private Button btnBuscar;
-    @FXML private TableView<String> tableResultats;
-    @FXML private TableColumn<String, String> colResultat;
+    @FXML private TableView<String> tableResultados;
+    @FXML private TableColumn<String, String> colResultado;
 
-    public void setRolUsuari(String rol) {
+    public void setRolUsuario(String rol) {
         if (!"admin".equalsIgnoreCase(rol)) {
-            Alertas.showErrorAlert("No tens permisos per accedir a aquest mòdul.");
-            desactivarMòdul();
+            Alertas.showErrorAlert("No tienes permisos para acceder a este modulo.");
+            desactivarModulo();
         }
     }
 
     @FXML
     public void initialize() {
-        carregarDocents();
-        colResultat.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()));
+        cargarDocentes();
+        colResultado.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()));
     }
 
-    private void desactivarMòdul() {
-        comboDocents.setDisable(true);
+    private void desactivarModulo() {
+        comboDocentes.setDisable(true);
         datePicker.setDisable(true);
         btnBuscar.setDisable(true);
     }
 
-    private void carregarDocents() {
+    private void cargarDocentes() {
         try (Connection conn = DatabaseConnector.connect()) {
             String sql = "SELECT id_docent, nom FROM docent";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
-            ObservableList<String> docents = FXCollections.observableArrayList();
+            ObservableList<String> docentes = FXCollections.observableArrayList();
             while (rs.next()) {
-                docents.add(rs.getString("nom") + " - " + rs.getString("id_docent"));
+                docentes.add(rs.getString("nom") + " - " + rs.getString("id_docent"));
             }
-            comboDocents.setItems(docents);
+            comboDocentes.setItems(docentes);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void buscarAssistencia() {
-        String seleccionado = comboDocents.getValue();
-        LocalDate data = datePicker.getValue();
+    void buscarAsistencia() {
+        String seleccionado = comboDocentes.getValue();
+        LocalDate fecha = datePicker.getValue();
 
-        if (data == null) {
-            Alertas.showWarningAlert("Selecciona una data per continuar.");
+        if (fecha == null) {
+            Alertas.showWarningAlert("Selecciona una fecha para continuar.");
             return;
         }
 
-        ObservableList<String> resultats = FXCollections.observableArrayList();
-        String diaLletra = convertirADiaLletra(data);
+        ObservableList<String> resultados = FXCollections.observableArrayList();
+        String diaLetra = convertirADiaLetra(fecha);
 
         try (Connection conn = DatabaseConnector.connect()) {
             PreparedStatement stmt;
 
             if (seleccionado == null) {
-                // Consulta para admin (todos los docentes)
                 stmt = conn.prepareStatement("""
                     SELECT d.nom AS nom_docent, hg.hora_desde, hg.hora_fins
                     FROM docent d
@@ -83,10 +82,9 @@ public class ConsultaAssistenciaController {
                     )
                     ORDER BY d.nom, hg.hora_desde
                 """);
-                stmt.setString(1, diaLletra);
-                stmt.setDate(2, Date.valueOf(data));
+                stmt.setString(1, diaLetra);
+                stmt.setDate(2, Date.valueOf(fecha));
             } else {
-                // Consulta para un docente específico
                 String idDocent = seleccionado.split(" - ")[1];
                 stmt = conn.prepareStatement("""
                     SELECT hg.hora_desde, hg.hora_fins, hg.contingut, hg.grup
@@ -103,9 +101,9 @@ public class ConsultaAssistenciaController {
                 """);
                 stmt.setString(1, idDocent);
                 stmt.setString(2, idDocent);
-                stmt.setString(3, diaLletra);
+                stmt.setString(3, diaLetra);
                 stmt.setString(4, idDocent);
-                stmt.setDate(5, Date.valueOf(data));
+                stmt.setDate(5, Date.valueOf(fecha));
             }
 
             ResultSet rs = stmt.executeQuery();
@@ -121,21 +119,21 @@ public class ConsultaAssistenciaController {
                            rs.getString("contingut") + " " +
                            rs.getString("grup") + ")";
                 }
-                resultats.add(info);
+                resultados.add(info);
             }
 
-            tableResultats.setItems(resultats);
+            tableResultados.setItems(resultados);
             
-            if (resultats.isEmpty()) {
-                Alertas.showInfoAlert("No s'han trobat hores de assistència per aquest dia.");
+            if (resultados.isEmpty()) {
+                Alertas.showInfoAlert("No se han encontrado horas de asistencia para este dia.");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Alertas.showErrorAlert("Error al carregar les dades.");
+            Alertas.showErrorAlert("Error al cargar las fechas.");
         }
     }
 
-    private String convertirADiaLletra(LocalDate data) {
+    private String convertirADiaLetra(LocalDate data) {
         return switch (data.getDayOfWeek()) {
             case MONDAY -> "L";
             case TUESDAY -> "M";
@@ -148,14 +146,15 @@ public class ConsultaAssistenciaController {
     
     @FXML
     void limpiarCampos() {
-        // Limpiar ComboBox
-        comboDocents.getSelectionModel().clearSelection();
+    	
+    	 /* Limpia el ComboBox */
+        comboDocentes.getSelectionModel().clearSelection();
         
-        // Limpiar DatePicker
+        /* Limpia el DatePicker */
         datePicker.setValue(null);
         
-        // Limpiar la tabla de resultados
-        tableResultats.getItems().clear();
+        /* Limpia la tabla de resultados */
+        tableResultados.getItems().clear();
     }
 
 }
