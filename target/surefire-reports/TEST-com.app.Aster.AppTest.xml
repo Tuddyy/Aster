@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
     <property name="sun.boot.library.path" value="C:\Users\tudor\Desktop\sts-4.30.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.6.v20250130-0529\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\tudor\AppData\Local\Temp\surefire16750640932170366614\surefirebooter-20250525014559181_3.jar C:\Users\tudor\AppData\Local\Temp\surefire16750640932170366614 2025-05-25T01-45-59_106-jvmRun1 surefire-20250525014559181_1tmp surefire_0-20250525014559181_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\tudor\AppData\Local\Temp\surefire14706096348616957243\surefirebooter-20250526191329979_3.jar C:\Users\tudor\AppData\Local\Temp\surefire14706096348616957243 2025-05-26T19-13-29_855-jvmRun1 surefire-20250526191329979_1tmp surefire_0-20250526191329979_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\tudor\Documents\workspace-spring-tools-for-eclipse-4.30.0.RELEASE\Aster\target\test-classes;C:\Users\tudor\Documents\workspace-spring-tools-for-eclipse-4.30.0.RELEASE\Aster\target\classes;C:\Users\tudor\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\tudor\.m2\repository\com\mysql\mysql-connector-j\9.3.0\mysql-connector-j-9.3.0.jar;C:\Users\tudor\.m2\repository\com\google\protobuf\protobuf-java\4.29.0\protobuf-java-4.29.0.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-base\21.0.7\javafx-base-21.0.7.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-base\21.0.7\javafx-base-21.0.7-win.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-controls\21.0.7\javafx-controls-21.0.7.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-controls\21.0.7\javafx-controls-21.0.7-win.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-graphics\21.0.7\javafx-graphics-21.0.7.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-graphics\21.0.7\javafx-graphics-21.0.7-win.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-fxml\21.0.7\javafx-fxml-21.0.7.jar;C:\Users\tudor\.m2\repository\org\openjfx\javafx-fxml\21.0.7\javafx-fxml-21.0.7-win.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\tudor\AppData\Local\Temp\surefire16750640932170366614\surefirebooter-20250525014559181_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\tudor\AppData\Local\Temp\surefire14706096348616957243\surefirebooter-20250526191329979_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+7-LTS"/>

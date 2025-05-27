@@ -25,8 +25,6 @@
             <ComboBox fx:id="docenteCombo" prefWidth="200"/>
         </VBox>
     </HBox>
-    <Button fx:id="generarBtn" onAction="#generarInforme" prefHeight="31.0" prefWidth="178.0" styleClass="btn-primary" text="Generar Informe"/>
-    
-    <!-- Cambiamos el ListView por un TextArea para mostrar el informe -->
+    <Button onAction="#generarInforme" prefHeight="31.0" prefWidth="178.0" styleClass="btn-primary" text="Generar Informe"/>
     <TextArea fx:id="resultadosTextArea" prefHeight="300" wrapText="true" editable="false"/>
 </VBox>

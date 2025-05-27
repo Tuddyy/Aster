@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Text?>
 
 <HBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.controller.Aster.LoginController" stylesheets="@../css/application.css">
-
     <children>
         <AnchorPane minWidth="350" HBox.hgrow="ALWAYS" style="-fx-background-color: #6D6DA0;">
             <children>
@@ -24,7 +23,6 @@
                 </VBox>
             </children>
         </AnchorPane>
-
         <AnchorPane minWidth="350" HBox.hgrow="ALWAYS" style="-fx-background-color: #f4f4f4;">
             <children>
                 <VBox alignment="CENTER" spacing="30" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
@@ -34,13 +32,11 @@
                                 <ColorAdjust brightness="0.18"/>
                             </effect>
                         </ImageView>
-
                         <Text text="Inicio de sesión" fill="#2a2a29" strokeType="OUTSIDE" strokeWidth="0">
                             <font>
                                 <Font name="System Bold" size="21"/>
                             </font>
                         </Text>
-
                         <HBox alignment="CENTER" spacing="10">
                             <children>
                                 <ImageView fx:id="usuarioImage" fitWidth="20" fitHeight="20">
@@ -51,7 +47,6 @@
                                 <TextField fx:id="DniField" promptText="DNI" style="-fx-background-color: transparent; -fx-border-color: #0E0E0E; -fx-border-width: 0 0 2 0;"/>
                             </children>
                         </HBox>
-
                         <HBox alignment="CENTER" spacing="10">
                             <children>
                                 <ImageView fx:id="passwordImage" fitWidth="20" fitHeight="20">
@@ -62,7 +57,6 @@
                                 <PasswordField fx:id="PasswordField" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-color: #0E0E0E; -fx-border-width: 0 0 2 0;"/>
                             </children>
                         </HBox>
-
                         <Button fx:id="LoginButton" text="Acceder" defaultButton="true" onAction="#handleLogin" minWidth="120">
                             <font>
                                 <Font name="System Bold" size="12"/>

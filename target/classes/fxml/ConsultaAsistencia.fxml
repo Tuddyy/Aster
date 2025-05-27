@@ -10,13 +10,13 @@
 <?import javafx.scene.text.Font?> 
 
 <AnchorPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.controller.Aster.ConsultaAsistenciaController" styleClass="module-container"> 
-    <Label fx:id="asistenciaTitle" layoutX="30" layoutY="20" text="Consulta de asistencia al centro" /> 
+    <Label layoutX="30" layoutY="20" text="Consulta de asistencia al centro" /> 
     <Label layoutX="30" layoutY="70" text="Docente (opcional):" /> 
     <ComboBox fx:id="comboDocentes" layoutX="150" layoutY="65" prefWidth="250" /> 
     <Label layoutX="30" layoutY="120" text="Fecha o mes a consultar:" /> 
     <DatePicker fx:id="datePicker" layoutX="200" layoutY="115" /> 
     <Button fx:id="btnBuscar" layoutX="450" layoutY="113" onAction="#buscarAsistencia" style="-fx-padding: 5 15;" text="Buscar" /> 
-    <Button fx:id="btnLimpiar" layoutX="530" layoutY="113" onAction="#limpiarCampos" style="-fx-padding: 5 15;" text="Limpiar" />
+    <Button layoutX="530" layoutY="113" onAction="#limpiarCampos" style="-fx-padding: 5 15;" text="Limpiar" />
     <TableView fx:id="tableResultados" layoutX="30" layoutY="170" prefHeight="200" prefWidth="580"> 
         <columns> 
             <TableColumn fx:id="colResultado" prefWidth="580.0" text="Resultado" /> 

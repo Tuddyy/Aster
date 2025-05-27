@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?> 
 <?import javafx.scene.text.Text?> 
 
-<BorderPane xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" fx:controller="com.app.controller.Aster.AplicacionController" stylesheets="@../css/application.css" minWidth="800" minHeight="600"> 
+<BorderPane xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.controller.Aster.AplicacionController" stylesheets="@../css/application.css" minWidth="800" minHeight="600"> 
     <top> 
-        <HBox fx:id="headerBox" spacing="20" style="-fx-background-color: #0B0205;"> 
+        <HBox spacing="20" style="-fx-background-color: #0B0205;"> 
             <padding> 
                 <Insets top="10" right="15" bottom="10" left="15"/> 
             </padding> 
