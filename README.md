@@ -36,7 +36,7 @@
 - Java 11 o superior
 - XAMPP con MySQL y phpMyAdmin
 - Sistema operativo compatible (Windows / Linux / MacOS)
-- Eclipse + JavaFX configurado
+- Spring Tools for Eclipse + JavaFX configurado
 
 ### 💾 Pasos
 
